@@ -1,0 +1,194 @@
+/* ============ COLORES (variables) ============ */
+:root {
+  --bg: #0b0b0c;
+  --panel: rgba(20, 20, 22, .72);
+  --texto: #f3f1ee;
+  --suave: #a8a39d;
+  --rojo: #e11d2e;
+  --linea: rgba(255, 255, 255, .12);
+  --velo: rgba(0, 0, 0, .78);   /* oscurecido sobre tu imagen de fondo */
+}
+/* Modo claro: el JS pone data-theme="light" en <html> */
+[data-theme="light"] {
+  --bg: #f5f2ee;
+  --panel: rgba(255, 255, 255, .8);
+  --texto: #19171a;
+  --suave: #6a645e;
+  --linea: rgba(0, 0, 0, .12);
+  --velo: rgba(245, 242, 238, .86);
+}
+
+/* ============ BASE ============ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--texto);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.65;
+  min-height: 100vh;
+  transition: background .4s, color .4s;
+}
+h1, h2, h3, h4 { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400; letter-spacing: .05em; margin: 0; }
+
+
+/* Luz roja que sigue al mouse (--mx y --my los actualiza script.js) */
+.luz {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 30%), rgba(225, 29, 46, .16), transparent 70%);
+}
+
+/* ============ BARRA SUPERIOR ============ */
+.barra {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding: .8rem 1.5rem;
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linea);
+}
+/* Tamaño del logo en la barra */
+.logo img {
+  height: 2.2rem;   
+  width: auto;      
+  display: block;
+}
+.logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .06em; color: var(--texto); text-decoration: none; }
+.menu { display: flex; gap: 1.4rem; }
+.menu a { color: var(--suave); text-decoration: none; font-weight: 600; font-size: .95rem; padding: .2rem 0; border-bottom: 2px solid transparent; transition: .25s; }
+.menu a:hover { color: var(--texto); }
+.menu a.activo { color: var(--texto); border-color: var(--rojo); }   /* la clase "activo" la pone el JS */
+.btn-tema { background: none; border: 1px solid var(--linea); color: var(--texto); border-radius: 50%; width: 2.4rem; height: 2.4rem; cursor: pointer; font-size: 1.1rem; transition: .25s; }
+.btn-tema:hover { border-color: var(--rojo); transform: rotate(20deg); }
+
+/* ============ VISTAS (una a la vez) ============ */
+main { max-width: 62rem; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+.vista { display: none; }                         /* todas ocultas... */
+.vista.activa { display: block; animation: entrar .6s ease both; }  /* ...menos la activa */
+@keyframes entrar { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* Los hijos de cada vista aparecen uno tras otro */
+.vista.activa > * { animation: entrar .6s ease both; }
+.vista.activa > *:nth-child(2) { animation-delay: .1s; }
+.vista.activa > *:nth-child(3) { animation-delay: .2s; }
+.vista.activa > *:nth-child(4) { animation-delay: .3s; }
+.vista.activa > *:nth-child(5) { animation-delay: .4s; }
+.vista.activa > *:nth-child(6) { animation-delay: .5s; }
+
+/* ============ INICIO ============ */
+#inicio { text-align: center; padding-top: 5vh; }
+.mini { color: var(--rojo); letter-spacing: .35em; text-transform: uppercase; font-weight: 600; margin: 0; }
+.nombre { font-size: clamp(4.5rem, 18vw, 10rem); line-height: .95; position: relative; display: inline-block; margin: .4rem 0; }
+/* Rasguños rojos sobre el nombre */
+.nombre::after { content: ""; position: absolute; left: -2%; right: -2%; top: 55%; height: 6px; background: var(--rojo); transform: rotate(-4deg); opacity: .85; box-shadow: 0 14px 0 -2px var(--rojo); }
+.escribe { font-size: 1.4rem; margin: .5rem 0 1rem; }
+#typed { color: var(--rojo); font-weight: 600; }
+.cursor { color: var(--rojo); animation: parpadeo 1s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+.intro { max-width: 36rem; margin: 0 auto 2rem; color: var(--suave); }
+
+/* ============ BOTONES ============ */
+.botones { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; margin-top: 1.2rem; }
+.btn { background: var(--rojo); color: #fff; padding: .75rem 1.5rem; border-radius: 99px; text-decoration: none; font-weight: 600; border: 2px solid var(--rojo); transition: .25s; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(225, 29, 46, .35); }
+.btn i { margin-right: .4rem; }   /* espacio entre icono y texto */
+.btn-borde { background: transparent; color: var(--texto); border-color: var(--linea); }
+.btn-borde:hover { border-color: var(--rojo); }
+
+/* ============ SECCIONES INTERNAS ============ */
+h2 { font-size: clamp(2.6rem, 8vw, 4rem); margin-bottom: 1rem; }
+h2::after { content: ""; display: block; width: 4rem; height: 4px; background: var(--rojo); margin-top: .3rem; transform: skewX(-20deg); }
+h3 { font-size: 1.8rem; margin: 2.2rem 0 .8rem; }
+.dos-col { display: grid; gap: 1.5rem; grid-template-columns: 14rem 1fr; align-items: center; }
+
+/* ============ TARJETAS ============ */
+.tarjetas { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.tarjeta { background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; padding: 1.3rem; backdrop-filter: blur(8px); transition: .3s; }
+.tarjeta:hover { transform: translateY(-6px); border-color: var(--rojo); }
+.tarjeta h4 { font-size: 1.5rem; margin-bottom: .3rem; }
+.tarjeta p { margin: 0 0 .6rem; color: var(--suave); font-size: .95rem; }
+.tarjeta-vacia { border-style: dashed; opacity: .7; }
+.enlace { color: var(--rojo); font-weight: 600; text-decoration: none; }
+
+/* ============ GALERÍAS Y FOTOS ============ */
+
+/* Regla de seguridad: ninguna imagen puede ser más ancha que su caja */
+img {
+  max-width: 100%;   
+  height: auto;      
+  display: block;    
+}
+
+/* Foto de perfil circular en "Sobre mí" */
+.retrato {
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 14rem;
+  border-radius: 50%;
+  overflow: hidden;                 /* recorta la foto en círculo */
+  border: 3px solid var(--rojo);
+}
+.retrato img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                
+  object-position: center top;      
+}
+/* ============ ICONOS DE REDES ============ */
+.redes { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.redes a {
+  width: 3.4rem; height: 3.4rem;             
+  display: flex; align-items: center; justify-content: center;  
+  border-radius: 50%;
+  border: 1px solid var(--linea);
+  background: var(--panel);
+  color: var(--texto);
+  font-size: 1.4rem;                          
+  text-decoration: none;
+  transition: .25s;
+}
+.redes a:hover {                              /* al pasar el mouse: se pone rojo y sube */
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: #fff;
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(225, 29, 46, .35);
+}
+
+/* ============ CONTACTO EN EL INICIO ============ */
+.contacto-inicio { max-width: 28rem; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--linea); }
+.contacto-inicio p { margin: 0; color: var(--suave); font-size: .85rem; letter-spacing: .3em; text-transform: uppercase; }
+.contacto-inicio .redes { justify-content: center; margin-top: 1rem; }   /* iconos centrados */
+
+/* Galería: cuadrícula que se acomoda sola según el ancho de la pantalla */
+.galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); margin-top: 1rem; }
+
+/* Cada foto con su pie de foto (<figure class="foto">) */
+.foto { margin: 0; }
+.foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* misma proporción para todas */
+  object-fit: cover;     /* recorta en vez de deformar */
+  border-radius: 14px;
+  transition: .3s;
+}
+.foto img:hover { transform: scale(1.03); }
+.foto figcaption { color: var(--suave); font-size: .9rem; margin-top: .4rem; }
+
+/* Recuadro punteado, solo para huecos que todavía no tienen foto */
+.ph { aspect-ratio: 4 / 5; border: 2px dashed var(--linea); border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--suave); padding: 1rem; font-size: .9rem; }
+
+footer { text-align: center; color: var(--suave); font-size: .85rem; padding: 1rem 1rem 2rem; }
+
+/* ============ CELULAR ============ */
+@media (max-width: 640px) {
+  .dos-col { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .retrato { width: 10rem; }
+  .menu { gap: .9rem; order: 3; width: 100%; justify-content: center; }
+}
+
+/* Respeta a quien desactiva animaciones en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

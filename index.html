@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luistico · Programador y actor</title>
+  <meta name="description" content="Portafolio de Luis Adrián 'Luistico': programador, actor de teatro y fan de la lucha libre.">
+  <!-- Fuentes de Google: Bebas Neue (títulos) e Inter (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Iconos de redes (Font Awesome).-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Conecta el diseño CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Capa del fondo: imagen + oscurecido + luz que sigue al mouse -->
+  <div class="fondo"></div>
+  <div class="luz"></div>
+
+  <!-- ========== BARRA DE NAVEGACIÓN ========== -->
+  <header class="barra">
+    <!-- Logo: imagen dentro de un enlace que lleva al inicio. -->
+    <a href="#inicio" class="logo">
+      <img src="img/logo.png" alt="Logo de Luistico">
+    </a>
+
+    <!-- Cada enlace apunta al id de una vista -->
+    <nav class="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#portafolio">Portafolio</a>
+    </nav>
+
+    <!-- Botón de modo claro/oscuro -->
+    <button id="tema" class="btn-tema" aria-label="Cambiar entre modo claro y oscuro">🌙</button>
+  </header>
+
+  <main>
+
+    <!-- ========== VISTA 1: INICIO ========== -->
+    <section id="inicio" class="vista">
+      <p class="mini">Hola, soy</p>
+      <h1 class="nombre">LUISTICO</h1>
+      <!-- El texto de abajo lo escribe solo el JS -->
+      <p class="escribe">Soy <span id="typed"></span><span class="cursor">|</span></p>
+      <p class="intro">Programador de software, actor de teatro y fan de la lucha libre. Construyo cosas para la web y las cuento sobre un escenario.</p>
+      <div class="botones">
+        <a href="#portafolio" class="btn"><i class="fa-solid fa-briefcase"></i> Ver portafolio</a>
+        <!-- Descarga de CV -->
+        <a href="cv/luistico-cv.pdf" download="CV-Luis-Adrian.pdf" class="btn btn-borde"><i class="fa-solid fa-download"></i> Descargar CV</a>
+      </div>
+      <!-- Contacto: iconos de redes al final del inicio -->
+      <div class="contacto-inicio">
+        <p>Encuéntrame en</p>
+        <div class="redes">
+  <a href="https://www.linkedin.com/in/adrian-castro-0m2000" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+  <a href="https://github.com/LuisticoCG" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+  <a href="mailto:luistico0m@gmail.com" aria-label="Correo" title="Correo"><i class="fa-solid fa-envelope"></i></a>
+  <a href="https://instagram.com/luistico.web" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+  <a href="https://facebook.com/luisadrian.castro.775" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+  <a href="https://wa.me/526121081965" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+      </div>
+    </section>
+
+    <!-- ========== VISTA 2: SOBRE MÍ ========== -->
+    <section id="sobre-mi" class="vista">
+      <h2>Sobre mí</h2>
+      <div class="dos-col">
+        <!-- Foto de perfil -->
+        <div class="retrato"><img src="img/yo.jpg" alt="Foto de Luis Adrián"></div>
+        <div>
+          <p>Me llamo Luis Adrián, pero todos me dicen Luistico. Estudié desarrollo de software, ya estoy titulado y ahora busco mi primera oportunidad como desarrollador. Mientras tanto no paro de construir proyectos y de aprender.</p>
+          <p>Mi otra pasión es el teatro: me enseñó a improvisar, escuchar y comunicar, y eso se nota cuando trabajo en equipo.</p>
+        </div>
+      </div>
+
+      <h3>Mis diversiones</h3>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h4> Lucha libre</h4>
+          <p>Las máscaras, la arena y los gritos. Aquí van las fotos de los eventos a los que he ido.</p>
+        </article>
+        <article class="tarjeta">
+          <h4> José Madero</h4>
+          <p>Su música es mi banda sonora para programar, ensayar y viajar.</p>
+        </article>
+      </div>
+
+      <!-- Galería: cada foto es un <figure class="foto"> con su pie de foto. -->
+      <div class="galeria">
+        <figure class="foto">
+          <img src="img/lucha1.jpg" alt="Evento de lucha libre" loading="lazy">
+          <figcaption>Función de lucha libre · Noviembre 2025</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/lucha2.jpg" alt="Evento de lucha libre" loading="lazy">
+          <figcaption>AAA Meet & Greet · julio 2026</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/concierto1.jpg" alt="Concierto de José Madero" loading="lazy">
+          <figcaption>Gira Sarajevo · Diciembre 2025</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== VISTA 3: PORTAFOLIO ========== -->
+    <section id="portafolio" class="vista">
+      <h2>Portafolio</h2>
+
+      <h3>💻 Proyectos de código</h3>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h4>Promociones612Oficial.com</h4>
+          <p>Página Web oficial de promotora local de lucha libre, donde se puede ver eventos, roster y galería de las funciones</p>
+       
+          <a href="https://github.com/tu-usuario/tu-repo" target="_blank" rel="noopener" class="enlace">Ver proyecto →</a>
+        </article>
+        <article class="tarjeta">
+          <h4>Esta página</h4>
+          <p>Mi sitio personal hecho con HTML, CSS y JavaScript puro.</p>
+          <a href="https://github.com/tu-usuario/tu-repo" target="_blank" rel="noopener" class="enlace">Ver código →</a>
+        </article>
+        <article class="tarjeta tarjeta-vacia">
+          <h4>Próximamente</h4>
+          <p>Aquí irá mi siguiente proyecto.</p>
+        </article>
+      </div>
+
+      <h3>Teatro</h3>
+      <p>Algunas de las obras en las que he participado.</p>
+      <div class="galeria">
+        <figure class="foto">
+          <img src="img/obra-1.JPG" alt="Escena de la obra 1" loading="lazy">
+          <figcaption>Un tremendo delirio · 2022 · Hombre borracho</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/obra-2.JPG" alt="Escena de la obra 2" loading="lazy">
+          <figcaption>Macario · 2024 · Macario</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/obra-3.JPG" alt="Escena de la obra 3" loading="lazy">
+          <figcaption>Paso al norte · 2024 · Coyote</figcaption>
+        </figure>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>© <span id="anio"></span> Luis Adrián “Luistico”</footer>
+
+  <!-- Conecta la lógica (JavaScript). Va al final para que el HTML cargue primero -->
+  <script src="script.js"></script>
+</body>
+</html>
